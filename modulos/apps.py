@@ -4,5 +4,5 @@ from __future__ import unicode_literals
 from django.apps import AppConfig
 
 
-class GpioConfig(AppConfig):
-    name = 'gpio'
+class ModulosConfig(AppConfig):
+    name = 'modulos'
