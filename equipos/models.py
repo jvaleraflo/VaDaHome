@@ -12,17 +12,20 @@ equipos = {
 }
 """
 
-class Equipos(models.Model):
+class Equipo(models.Model):
 
-    ORDENADOR = 'ordenador'
-    CAMARA = 'camara'
+    ORDENADOR = 'ord'
+    CAMARA = 'cam'
 
     TIPOS_DISPONIBLES = (
         (ORDENADOR, 'Ordenador'),
         (CAMARA, 'Camara'),
     )
 
+    id = models.UUIDField(primary_key=True,auto_created=True)
     nombre = models.CharField(max_length=50)
-    ip = models.IPAddressField()
+    ip = models.GenericIPAddressField()
     mac = models.CharField(max_length=17)
     tipo = models.CharField(max_length=50, choices=TIPOS_DISPONIBLES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
