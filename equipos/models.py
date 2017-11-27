@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import uuid
+
 from django.db import models
+
 
 # Create your models here.
 
@@ -22,10 +25,14 @@ class Equipo(models.Model):
         (CAMARA, 'Camara'),
     )
 
-    id = models.UUIDField(primary_key=True,auto_created=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     nombre = models.CharField(max_length=50)
     ip = models.GenericIPAddressField()
     mac = models.CharField(max_length=17)
     tipo = models.CharField(max_length=50, choices=TIPOS_DISPONIBLES)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.nombre
+
